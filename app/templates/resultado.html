@@ -296,12 +296,12 @@
         <div class="container">
             <div class="result-container">
                 <div class="result-header">
-                    <h1>Resultado da Análise de Crédito</h1>
+                    <h1>Resultado da Análise de Risco de Crédito</h1>
                     <p>Relatório personalizado baseado nos seus dados</p>
                 </div>
                 <div class="result-body">
                     <div class="result-info">
-                        <h2>Obrigado, {{ dados.nome }}, por enviar sua solicitação!</h2>
+                        <h2>Obrigado, {{ results.Nome }}, por enviar sua solicitação!</h2>
                         <p>Nossa análise de crédito inteligente processou seus dados e preparamos um relatório detalhado para você.</p>
                     </div>
                     
@@ -314,28 +314,16 @@
                         
                         <div class="result-details">
                             <div class="detail-item">
-                                <span class="detail-label">Status da Solicitação</span>
-                                <span class="detail-value">Aprovada</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Score de Crédito</span>
-                                <span class="detail-value">720 pontos</span>
-                            </div>
-                            <div class="detail-item">
                                 <span class="detail-label">Nível de Risco</span>
-                                <span class="detail-value">Baixo</span>
+                                <span class="detail-value">{{ results.resultado }}</span>
                             </div>
                             <div class="detail-item">
-                                <span class="detail-label">Valor Aprovado</span>
-                                <span class="detail-value">R$ {{ dados.valor_solicitado }}</span>
+                                <span class="detail-label">Probabilidade do Modelo de Machine Learning</span>
+                                <span class="detail-value">{{results.confianca}}%</span>
                             </div>
                             <div class="detail-item">
-                                <span class="detail-label">Taxa de Juros</span>
-                                <span class="detail-value">1,99% a.m.</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Data da Análise</span>
-                                <span class="detail-value">09/04/2025</span>
+                                <span class="detail-label">Modelo Utilizado</span>
+                                <span class="detail-value">Máquina de Vetores de Suporte - SVM</span>
                             </div>
                         </div>
                     </div>
