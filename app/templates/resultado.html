@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Análise | DataCredit</title>
+    <style>
+        :root {
+            --primary-blue: #0066cc;
+            --secondary-blue: #0077ed;
+            --dark-blue: #00408a;
+            --light-blue: #e3f2fd;
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --light-gray: #f5f5f7;
+            --mid-gray: #86868b;
+            --dark-gray: #1d1d1f;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 120px 0 80px;
+        }
+
+        .result-container {
+            background-color: var(--white);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .result-header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .result-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .result-header p {
+            opacity: 0.8;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .result-body {
+            padding: 40px;
+        }
+
+        .result-info {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .result-info h2 {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .result-info p {
+            font-size: 16px;
+            color: var(--mid-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .result-card {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .result-status {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .result-status h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .result-details {
+            margin-top: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: var(--mid-gray);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-gray);
+            padding: 40px 0;
+            font-size: 12px;
+            color: var(--mid-gray);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--mid-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .result-body {
+                padding: 30px 20px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DataCredit</div>
+                <div class="nav-links">
+                    <a href="#">Início</a>
+                    <a href="#">Serviços</a>
+                    <a href="#">Como Funciona</a>
+                    <a href="#">Sobre</a>
+                    <a href="#">Contato</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="result-container">
+                <div class="result-header">
+                    <h1>Resultado da Análise de Crédito</h1>
+                    <p>Relatório personalizado baseado nos seus dados</p>
+                </div>
+                <div class="result-body">
+                    <div class="result-info">
+                        <h2>Obrigado, {{ dados.nome }}, por enviar sua solicitação!</h2>
+                        <p>Nossa análise de crédito inteligente processou seus dados e preparamos um relatório detalhado para você.</p>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-status">
+                            <div class="status-icon">✓</div>
+                            <h3>Análise Concluída</h3>
+                            <p>Confira abaixo os detalhes da sua avaliação</p>
+                        </div>
+                        
+                        <div class="result-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Status da Solicitação</span>
+                                <span class="detail-value">Aprovada</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Score de Crédito</span>
+                                <span class="detail-value">720 pontos</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Nível de Risco</span>
+                                <span class="detail-value">Baixo</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Valor Aprovado</span>
+                                <span class="detail-value">R$ {{ dados.valor_solicitado }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Taxa de Juros</span>
+                                <span class="detail-value">1,99% a.m.</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Data da Análise</span>
+                                <span class="detail-value">09/04/2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="{% url 'home' %}" class="btn">Voltar ao início</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <p>Copyright © 2025 DataCredit. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Política de Cookies</a>
+                    <a href="#">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
