@@ -17,7 +17,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Construa o caminho para o modelo
-MODEL_PATH = os.path.join(BASE_DIR, 'app\model_ml\model\modelSVC.pkl')
+MODEL_PATH_SVM = os.path.join(BASE_DIR, 'app\model_ml\model\model_svm.pkl')
+MODEL_PATH_LOGISTIC = os.path.join(BASE_DIR, 'app\model_ml\model\model_logistic.pkl')
 PREPROCESSOR_PATH = os.path.join(BASE_DIR, 'app\model_ml\model\preprocessor.pkl')
 
 

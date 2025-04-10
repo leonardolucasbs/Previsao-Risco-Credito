@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 import numpy as np
 import joblib
-from .model_utils import ml_model
+from .model_utils import ml_model_logistic, ml_model_svm
 
 def home(request):
     return render(request, 'home.html')
@@ -10,10 +10,12 @@ def home(request):
 def analise_credito(request):
     if request.method == 'POST':
 
-        model_path = settings.MODEL_PATH
+        svm_model_path = settings.MODEL_PATH_SVM
+        logistic_model_path = settings.MODEL_PATH_LOGISTIC
         preprocessor_path = settings.PREPROCESSOR_PATH
 
-        model = joblib.load(model_path)
+        model_SVM = joblib.load(svm_model_path)
+        model_LOGISTIC = joblib.load(logistic_model_path)
         preprocessor = joblib.load(preprocessor_path)
 
         dados = {
@@ -39,31 +41,49 @@ def analise_credito(request):
                 record.append(dados[i])
 
         record = np.array(record).reshape(1, -1)
-
         record = preprocessor.transform(record)
 
         # Faz a predição
-        result = model.predict(record)
-        proba = model.predict_proba(record)
+        result_SVM = model_SVM.predict(record)
+        proba_SVM = model_SVM.predict_proba(record)
 
         # Interpreta o resultado
 
-        if result == 0:
-            status_credit = "Alto"
-        elif result == 1:
-            status_credit = "Baixo"
-        elif result == 2:
-            status_credit = "Moderado"
+        if result_SVM  == 0:
+            status_credit_SVM = "Alto"
+        elif result_SVM  == 1:
+            status_credit_SVM = "Baixo"
+        elif result_SVM  == 2:
+            status_credit_SVM = "Moderado"
         else:
-            status_credit = "Desconhecido"
+            status_credit_SVM = "Desconhecido"
 
-        confianca = max(proba[0])*100  # pega a maior probabilidade
+        confianca_SVM = max(proba_SVM[0]) *100 # pega a maior probabilidade
+
+        # Faz a predição
+        result_logistic = model_LOGISTIC.predict(record)
+        proba_logistic = model_LOGISTIC.predict_proba(record)
+
+        # Interpreta o resultado
+
+        if result_logistic  == 0:
+            status_credit_logistic = "Alto"
+        elif result_logistic  == 1:
+            status_credit_logistic = "Baixo"
+        elif result_logistic  == 2:
+            status_credit_logistic = "Moderado"
+        else:
+            status_credit_logistic = "Desconhecido"
+
+        confianca_logistic = max(proba_logistic[0]) *100 # pega a maior probabilidade
 
         # Adiciona os resultados ao contexto
         results = {
                 'Nome': dados['nome'],
-                'resultado': status_credit,
-                'confianca': f"{confianca:.2f}",
+                'resultado_svm': status_credit_SVM,
+                'confianca_svm': f"{confianca_SVM:.3f}",
+                'resultado_logistic': status_credit_logistic,
+                'confianca_logistic': f"{confianca_logistic:.3f}"
             }
 
         return render(request, 'resultado.html', {"results":results})

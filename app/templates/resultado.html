@@ -301,7 +301,7 @@
                 </div>
                 <div class="result-body">
                     <div class="result-info">
-                        <h2>Obrigado, {{ results.Nome }}, por enviar sua solicitação!</h2>
+                        <h2>Obrigado por enviar sua solicitação!</h2>
                         <p>Nossa análise de crédito inteligente processou seus dados e preparamos um relatório detalhado para você.</p>
                     </div>
                     
@@ -311,20 +311,39 @@
                             <h3>Análise Concluída</h3>
                             <p>Confira abaixo os detalhes da sua avaliação</p>
                         </div>
-                        
+                        <div class="detail-item">
+                            <span class="detail-label">Nome do Cliente</span>
+                            <span class="detail-value">{{ results.Nome }}</span>
+                        </div>
                         <div class="result-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Nível de Risco</span>
-                                <span class="detail-value">{{ results.resultado }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Probabilidade do Modelo de Machine Learning</span>
-                                <span class="detail-value">{{results.confianca}}%</span>
-                            </div>
                             <div class="detail-item">
                                 <span class="detail-label">Modelo Utilizado</span>
                                 <span class="detail-value">Máquina de Vetores de Suporte - SVM</span>
                             </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Nível de Risco</span>
+                                <span class="detail-value">{{ results.resultado_svm}}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Probabilidade do Modelo de Machine Learning</span>
+                                <span class="detail-value">{{results.confianca_svm}}%</span>
+                            </div>
+                            <div class="result-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Modelo Utilizado</span>
+                                    <span class="detail-value">Regressão Logística</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Nível de Risco</span>
+                                    <span class="detail-value">{{ results.resultado_logistic}}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Probabilidade do Modelo de Machine Learning</span>
+                                    <span class="detail-value">{{results.confianca_logistic}}%</span>
+                                </div>
+                                <br>
+                                <br>
+
                         </div>
                     </div>
                     
