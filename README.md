@@ -8,6 +8,14 @@ Este projeto desenvolve um algoritmo de Machine Learning capaz de classificar re
   </a>
 </p>
 
+Segue abaixo o arquivo que demonstra o desenvolvimento do Modelo: 
+
+<p align="center">
+  <a href="app/model_ml/Projeto1/main.ipynb">
+    Notebook do Jupyter
+  </a>
+</p>
+
 
 ## Sobre o Projeto:
 
