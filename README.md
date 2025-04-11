@@ -1,6 +1,6 @@
 # Previsão de Risco de Crédito 💳 - Classificação Multivalorada 
 
-Este projeto desenvolve um algoritmo de Machine Learning capaz de classificar registros de renda em 3 categorias: **Alto, Moderado e Baixo**. A base de dados foi criada de maneira artificialmente pela IA DeepSeek, contendo **5000 registros** com **12 atributos previsores** e **1 classe**. Segue abaixo o prompt utilizado para gerar essa massa de dados: 
+Este projeto envolve em desenvolver um modelo de Machine Learning capaz de classificar registros de renda em 3 categorias: **Alto, Moderado e Baixo**. A base de dados foi criada de maneira artificialmente pela IA DeepSeek, contendo **5000 registros** com **12 atributos previsores** e **1 classe**. Segue abaixo o prompt utilizado para gerar essa massa de dados: 
 
 <p align="center">
   <a href="app/model_ml/Projeto1/gerar_dados_IA.ipynb">
@@ -37,7 +37,6 @@ O objetivo desse projeto é fixar os conteúdos vistos em sala de aula, colocand
 <img src="images\result.png" alt="Analise Realizada"><br>
 
 - ⚠ Observação: As páginas web dessa aplicação foram geradas por uma IA generativa (Claude AI)
-
 
 
 # Como ter acesso ao projeto?
